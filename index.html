@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHÚC MỪNG NĂM MỚI</title>
+    <style>
+        body {
+            font-family: "Bendigo", cursive;
+            text-align: center;
+            background-color: #f4f4f9;
+            background: url('https://png.pngtree.com/background/20210715/original/pngtree-yellow-lanterns-watermelon-and-rice-dumplings-vietnamese-new-year-background-picture-image_1324245.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .photo-box {
+            border: 2px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .photo-box:hover {
+            transform: scale(1.05);
+            border-color: #007BFF;
+        }
+
+        img {
+            width: 150px;
+            height: auto;
+            max-height: 240px;
+            border-radius: 1px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYd-rrFCRRVjBPyA-bEEna_aXxGLfXIQZa7sh8TSgxAqKOSbHfCOnmlacTgIkc5Q54Wdr09BanXKSbIORZgcmrgFcvOHp6afsjFNXlFjTDSIGahY0FMTJs1dC_-pAYgtij7OBy2mQAC9yMTP3JsMKoWQE5zCup9XWkTT-RxopT90B3Dewr3EP7640WRhM/s16000-rw/(%20Anhpng.com%20)%20-%20Background-phong-nen-2025%20-%2063%20(Custom).jpg');
+            background-size: cover;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 95%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h2{
+            color: #ffffff00;
+        }
+
+
+
+        .modal-content input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+
+        .modal-content button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d9534f;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-content button:hover {
+            background-color: #b31733;
+        }
+
+        .greeting-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .greeting-modal-content {
+            background-color: #fff;
+            background-image: url('https://png.pngtree.com/background/20210709/original/pngtree-spring-festival-new-year-yellow-xiangyun-picture-image_929390.jpg');
+            background-size: cover;
+            background-position: center center;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        #greetingMessage {
+            margin-top: 80px;
+        }
+
+
+        .greeting-modal-content button {
+            margin-top: 80px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d9534f;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .greeting-modal-content button:hover {
+            background-color: #b31733;
+        }
+
+        @media (max-width: 600px) {
+            .photo-box {
+                padding: 5px;
+            }
+
+            img {
+                width: 120px;
+                max-height: 200px;
+            }
+
+            .modal-content,
+            .greeting-modal-content {
+                width: 95%;
+            }
+        }
+
+        .greeting-modal-content p {
+            padding: 10px;
+            font-size: 16px;
+            white-space: normal;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+
+
+        #errorModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+        }
+
+        #errorModal .greeting-modal-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #errorModal button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d9534f;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #errorModal button:hover {
+            background-color: #b31733;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="color: red;">KÍNH THƯA QUAN VIÊN HAI HỌ</h1>
+    <h2>Kính thưa cái lọ lục bình</h2>
+    <p>Chào mừng các chị em đã đến với màn chào sân năm mới của Ngân</p>
+
+    <div class="gallery">
+        <div class="photo-box" onclick="showGreeting(1)">
+            <img src="/image/con-ngan.jpg" alt="Friend 1">
+        </div>
+        <div class="photo-box" onclick="showGreeting(2)">
+            <img src="/image/con-ngan.jpg" alt="Friend 2">
+        </div>
+        <div class="photo-box" onclick="showGreeting(3)">
+            <img src="/image/con-ngan.jpg" alt="Friend 3">
+        </div>
+        <div class="photo-box" onclick="showGreeting(4)">
+            <img src="/image/con-ngan.jpg" alt="Friend 4">
+        </div>
+        <div class="photo-box" onclick="showGreeting(5)">
+            <img src="/image/con-ngan.jpg" alt="Friend 5">
+        </div>
+    </div>
+
+    <div id="pinModal" class="modal">
+        <div class="modal-content">
+            <h2>></h2>
+            <input type="password" id="pinInput" placeholder="Nhập mật khẩu ở đây">
+            <button onclick="validatePin()">Ô kê</button>
+            <button onclick="closeModal()" style="background-color: #d9534f;">Hủy</button>
+        </div>
+    </div>
+
+    <div id="greetingModal" class="greeting-modal">
+        <div class="greeting-modal-content">
+            <p id="greetingMessage"></p>
+            <button onclick="closeGreetingModal()">Close</button>
+        </div>
+    </div>
+
+    <div id="errorModal" class="greeting-modal" style="display: none;">
+        <div class="greeting-modal-content">
+            <p id="errorMessage">Mật khẩu sai rồi, thất vọng vl.</p>
+            <button onclick="closeErrorModal()">Đóng</button>
+        </div>
+    </div>
+
+    <script>
+        const photoData = [
+            { pin: "1234", greeting: "Chúc bạn một năm mới tràn đầy niềm vui, sức khỏe và thành công.Hy vọng mọi ước mơ của bạn sẽ trở thành hiện thực, và những nỗ lực không ngừng nghỉ sẽ mang lại những thành tựu xứng đáng.Mỗi ngày là một cơ hội mới để bạn phát triển và làm cho cuộc sống thêm phần ý nghĩa.Hãy luôn giữ vững niềm tin và hướng tới tương lai với tâm hồn lạc quan và quyết tâm.Chúc bạn hạnh phúc, bình an và thịnh vượng suốt năm mới!" },
+            { pin: "2345", greeting: "Hello Friend 2! Stay awesome and keep smiling!" },
+            { pin: "3456", greeting: "Hello Friend 3! You are doing amazing!" },
+            { pin: "4567", greeting: "Hello Friend 4! Keep reaching for the stars!" },
+            { pin: "5678", greeting: "Hello Friend 5! Always believe in yourself!" },
+        ];
+
+        let currentPhotoIndex = -1;
+
+        function showGreeting(photoIndex) {
+            currentPhotoIndex = photoIndex - 1;
+            document.getElementById('pinModal').style.display = 'flex';
+        }
+
+        function validatePin() {
+            const userPin = document.getElementById('pinInput').value;
+            if (userPin === photoData[currentPhotoIndex].pin) {
+                document.getElementById('greetingMessage').innerText = photoData[currentPhotoIndex].greeting;
+                closeModal();
+                document.getElementById('greetingModal').style.display = 'flex';
+            } else {
+                document.getElementById('errorModal').style.display = 'flex';
+            }
+        }
+
+        function closeErrorModal() {
+            document.getElementById('errorModal').style.display = 'none';
+        }
+
+
+        function closeModal() {
+            document.getElementById('pinModal').style.display = 'none';
+            document.getElementById('pinInput').value = '';
+        }
+
+        function closeGreetingModal() {
+            document.getElementById('greetingModal').style.display = 'none';
+        }
+    </script>
+</body>
